@@ -87,14 +87,48 @@ describe('example to-do app', () => {
   	  	cy.get('#loginFrm_password').type("password")
   	  	cy.get('#loginFrm > fieldset > .btn').should("have.attr", "title", "Login").click()
 
-        /*if(cy.get('.alert'))
+        if(cy.get('.alert').should("not.exist"))
         {
-          cy.log("Alert has appeared")
+          cy.log("Alerta aparuta")
         }
-        else{
-          cy.log("Alert has not appeared")
-        }*/
 
+
+  })
+
+  it('Random Register Data', () => {
+      cy.get("#customer_menu_top > li > a").click()
+    cy.get('#accountFrm_accountregister').should("be.checked")
+    cy.get('#accountFrm > fieldset > .btn').should("have.attr", "title", "Continue").click()
+      let userData = cy.request("https://randomuser.me/api/").then((result) =>{
+      let localData = result.body.results[0]
+      console.log(localData)
+
+      cy.get('#AccountFrm_firstname').type(localData.name.first)
+      cy.get('#AccountFrm_lastname').type(localData.name.last)
+      cy.get('#AccountFrm_email').type(localData.email)
+      cy.get('#AccountFrm_telephone').type(localData.phone)
+      cy.get('#AccountFrm_address_1').type(localData.location.country + ' ' + localData.location.city)
+      cy.get('#AccountFrm_city').type(localData.location.city)
+      cy.get('#AccountFrm_postcode').type(localData.location.postcode)
+      cy.get('#AccountFrm_country_id').select(localData.location.country).trigger('click')
+
+      let state = localData.location.state.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+
+      cy.get('#AccountFrm_zone_id').select(state).trigger('click')
+      cy.get('#AccountFrm_loginname').type(localData.login.username)
+      cy.get('#AccountFrm_password').type(localData.login.password)
+      cy.get('#AccountFrm_confirm').type(localData.login.password)
+      cy.get('#AccountFrm_newsletter0').check()
+      cy.get('#AccountFrm_agree').check()
+
+      cy.get('.col-md-2 > .btn').click()
+
+      if(cy.get('.alert'))
+      {
+        cy.log(cy.get('.alert'))
+      }
+
+    })
   })
 
   it('Login check with invalid data', () => {
