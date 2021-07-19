@@ -13,9 +13,9 @@ describe('example to-do app', () => {
     cy.log("Welcome to the internship!")
   })
 
-  it('Register Check', () =>
+  it('Register Check with valid data', () =>
   {
-  		cy.get("#customer_menu_top > li > a").click()
+  	cy.get("#customer_menu_top > li > a").click()
 		cy.get('#accountFrm_accountregister').should("be.checked")
 		cy.get('#accountFrm > fieldset > .btn').should("have.attr", "title", "Continue").click()
 
@@ -46,12 +46,54 @@ describe('example to-do app', () => {
   	  	}
   })
 
+   it('Register Check with invalid data', () =>
+  {
+    cy.get("#customer_menu_top > li > a").click()
+    cy.get('#accountFrm_accountregister').should("be.checked")
+    cy.get('#accountFrm > fieldset > .btn').should("have.attr", "title", "Continue").click()
+
+    cy.get('#AccountFrm_firstname').type("Catarauuuuuuuuuuuuuuu")
+    cy.get('#AccountFrm_lastname').type("Cezar")
+    cy.get('#AccountFrm_email').type("catarau.ci@gmail...com")
+    cy.get('#AccountFrm_telephone').type("0760133551")
+    cy.get('#AccountFrm_company').type("COMPANY NAME")
+    cy.get('#AccountFrm_address_1').type("Suceavaa")
+    cy.get('#AccountFrm_city').type("Suceava")
+    cy.get('#AccountFrm_postcode').type("720066")
+    cy.get('#AccountFrm_country_id').select("Romania").trigger("click")
+    cy.get('#AccountFrm_zone_id').select("Suceava").trigger("click")
+    cy.get('#AccountFrm_loginname').type("Cezar397")
+    cy.get('#AccountFrm_password').type("password")
+    cy.get('#AccountFrm_confirm').type("password1")
+    cy.get('#AccountFrm_newsletter1').check()
+    cy.get('#AccountFrm_agree').check()
+
+    cy.get('.col-md-2 > .btn').should("have.attr", "title", "Continue").click()
+
+    if(cy.get('.alert'))
+        {
+          cy.log("Alert has appeared")
+        }
+        else{
+          cy.log("Alert has not appeared")
+        }
+  })
+  
+
   it('Login check with valid data', () => {
   	  	cy.get("#customer_menu_top > li > a").click()
 
   	  	cy.get('#loginFrm_loginname').type("Cezar397")
   	  	cy.get('#loginFrm_password').type("password")
   	  	cy.get('#loginFrm > fieldset > .btn').should("have.attr", "title", "Login").click()
+
+        /*if(cy.get('.alert'))
+        {
+          cy.log("Alert has appeared")
+        }
+        else{
+          cy.log("Alert has not appeared")
+        }*/
 
   })
 
