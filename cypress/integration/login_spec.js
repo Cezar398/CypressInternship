@@ -49,4 +49,21 @@ describe("Login test", () =>{
       cy.get('.alert').should("exist").contains("Error: Incorrect login or password provided.")
 
    })
+
+   it('Check login boundary', () => {
+          cy.get('#loginFrm_loginname').type("catarau.ci@gmail.com")
+      cy.get('#loginFrm_password').type("123")
+
+            cy.get('#loginFrm > fieldset > .btn').should("have.attr", "title", "Login").click()
+
+      cy.get('.alert').should("exist").contains("Error: Incorrect login or password provided.")
+
+    cy.get('#loginFrm_password').type("123123123123123123123123123123")
+            cy.get('#loginFrm > fieldset > .btn').should("have.attr", "title", "Login").click()
+
+      cy.get('.alert').should("exist").contains("Error: Incorrect login or password provided.")
+
+
+
+   })
 })
