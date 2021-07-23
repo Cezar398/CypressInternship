@@ -89,14 +89,14 @@ describe("Tests for unregistered customers", () => {
 			let localPrice = parseFloat(text.substring(1))
 			localFinishPrice.push(localPrice)
 
-		})
+		}).then(() => {                                                   // queued last
 
-		cy.wrap(localFinishPrice).then((result) => {
-			if(result[0] + result[1] == result[2])
-				cy.log("Finish price is ok")
-			else
-				cy.log("Finish price isn't ok")
-		})
+    if(localFinishPrice[0] + localFinishPrice[1] == localFinishPrice[2])
+      cy.log("Finish price is ok")
+    else
+      cy.log("Finish price isn't ok")
+
+  })
 
 		cy.get('#cart_checkout2').click()
 		cy.get('#accountFrm_accountguest').click()
