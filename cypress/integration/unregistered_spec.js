@@ -31,7 +31,6 @@ describe("Tests for unregistered customers", () => {
 
 		cy.get('.cart').click()
 
-		cy.wait(500)
 
 		let item = []
 

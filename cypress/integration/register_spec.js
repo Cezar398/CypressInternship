@@ -1,6 +1,6 @@
   /// <reference types="cypress" />
   //19.07.2021
-  describe('example to-do app', () => {
+  describe('Test register functionality', () => {
     beforeEach(() => {
 
       cy.visit('https://automationteststore.com/')
@@ -15,12 +15,7 @@
 
     it('Register Check with valid data', () =>
     {
-     cy.get('.alert').contains("Login name must be alphanumeric only and between 5 and 64 characters!").should("exist")
-     cy.get('.alert').contains("Telephone must be between 3 and 32 characters!").should("exist")
-     cy.get('.alert').contains("Email Address does not appear to be valid!").should("exist")
-     cy.get('.alert').contains("City must be between 3 and 128 characters!").should("exist")
-     cy.get('.alert').contains("Zip/postal code must be between 3 and 10 characters!").should("exist")
-     cy.get('.alert').contains("Address 1 must be between 3 and 128 characters!").should("exist")
+ 
      cy.get('#AccountFrm_firstname').type("Catarau")
      cy.get('#AccountFrm_lastname').type("Cezar")
      cy.get('#AccountFrm_email').type("catarau.ci@gmail.com")
@@ -38,6 +33,13 @@
      cy.get('#AccountFrm_agree').check()
 
      cy.get('.col-md-2 > .btn').should("have.attr", "title", "Continue").click()
+
+     cy.get('.alert').contains("Login name must be alphanumeric only and between 5 and 64 characters!").should("not.exist")
+     cy.get('.alert').contains("Telephone must be between 3 and 32 characters!").should("not.exist")
+     cy.get('.alert').contains("Email Address does not appear to be valid!").should("not.exist")
+     cy.get('.alert').contains("City must be between 3 and 128 characters!").should("not.exist")
+     cy.get('.alert').contains("Zip/postal code must be between 3 and 10 characters!").should("not.exist")
+     cy.get('.alert').contains("Address 1 must be between 3 and 128 characters!").should("not.exist")
    })
 
     it('Register Check with invalid data', () =>
@@ -62,12 +64,11 @@
       cy.get('.col-md-2 > .btn').should("have.attr", "title", "Continue").click()
 
 
-     cy.wait(500)
      cy.get('.alert').contains("Login name must be alphanumeric only and between 5 and 64 characters!").should("exist")
      cy.get('.alert').contains("Telephone must be between 3 and 32 characters!").should("not.exist")
      cy.get('.alert').contains("Email Address does not appear to be valid!").should("exist")
      cy.get('.alert').contains("City must be between 3 and 128 characters!").should("exist")
-     cy.get('.alert').contains("Zip/postal code must be between 3 and 10 characters!").should("exist")
+     cy.get('.alert').contains("Zip/postal code must be between 3 and 10 characters!").should("not.exist")
      cy.get('.alert').contains("Address 1 must be between 3 and 128 characters!").should("not.exist")
     })
 
