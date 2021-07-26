@@ -1,0 +1,18 @@
+{
+	"firstname": "Catarau",
+	"lastname": "Cezar",
+	"email": "catarau.ci@gmail.com",
+	"telephone": "0760133551",
+	"company": "Comany Name",
+	"address": "Suceava",
+	"city": "Suceava",
+	"postcode": "720066",
+	"selectinput": {
+		"country": "Romania",
+		"city": "Suceava"
+	},
+	"loginname": "Cezar397",
+	"password": "password",
+	"news": true,
+	"agree": true
+}

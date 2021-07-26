@@ -67,7 +67,7 @@
      cy.get('.alert').contains("Login name must be alphanumeric only and between 5 and 64 characters!").should("exist")
      cy.get('.alert').contains("Telephone must be between 3 and 32 characters!").should("not.exist")
      cy.get('.alert').contains("Email Address does not appear to be valid!").should("exist")
-     cy.get('.alert').contains("City must be between 3 and 128 characters!").should("exist")
+     cy.get('.alert').contains("City must be between 3 and 128 characters!").should("not.exist")
      cy.get('.alert').contains("Zip/postal code must be between 3 and 10 characters!").should("not.exist")
      cy.get('.alert').contains("Address 1 must be between 3 and 128 characters!").should("not.exist")
     })
@@ -135,7 +135,6 @@
 
      cy.get('.col-md-2 > .btn').click()
 
-     cy.wait(500)
      cy.get('.alert').contains("Login name must be alphanumeric only and between 5 and 64 characters!").should("exist")
      cy.get('.alert').contains("Telephone must be between 3 and 32 characters!").should("exist")
      cy.get('.alert').contains("Email Address does not appear to be valid!").should("not.exist")
@@ -145,7 +144,7 @@
 
     })
 
-    it("Register boundary test <", () => {
+    it("Register boundary test >", () => {
       //Login name 5-64
       //First name 1-32
       //Last name 1-32
@@ -158,7 +157,7 @@
       //Password 4-20
       //Company Name ?
 
-     cy.log("Boundary <")
+     cy.log("Boundary >")
      cy.get('#AccountFrm_firstname').type("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
      cy.get('#AccountFrm_lastname').type("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
      cy.get('#AccountFrm_email').type("catarau.ci@gmail.com")
@@ -177,7 +176,6 @@
 
      cy.get('.col-md-2 > .btn').click()
 
-     cy.wait(500)
      cy.get('.alert').contains("Login name must be alphanumeric only and between 5 and 64 characters!").should("exist")
      cy.get('.alert').contains("Telephone must be between 3 and 32 characters!").should("exist")
      cy.get('.alert').contains("Email Address does not appear to be valid!").should("not.exist")
